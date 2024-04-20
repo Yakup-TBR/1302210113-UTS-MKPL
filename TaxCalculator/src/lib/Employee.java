@@ -29,6 +29,15 @@ public class Employee {
         isMale = employeeData.isGender();
     }
 
+	
+    /**
+     * Menetapkan gaji bulanan pegawai berdasarkan grade kepegawaiannya.
+     * Grade 1: 3.000.000 per bulan
+     * Grade 2: 5.000.000 per bulan
+     * Grade 3: 7.000.000 per bulan
+     * Jika pegawai adalah warga negara asing, gaji bulanan diperbesar sebanyak 50%
+     */
+
     public void setMonthlySalary(int grade) {
         int baseSalary = getBaseSalary(grade);
         monthlySalary = isForeigner ? (int) (baseSalary * 1.5) : baseSalary;
