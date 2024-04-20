@@ -17,6 +17,16 @@ public class TaxFunction {
 	 * 
 	 */
 	
+	 public static int calculateTax(EmployeeIncome employeeIncome) {
+        int taxableIncome = calculateTaxableIncome(employeeIncome);
+        int tax = calculateTaxFromTaxableIncome(taxableIncome);
+        return Math.max(tax, 0);
+    }
+
+    private static int calculateTaxableIncome(EmployeeIncome employeeIncome) {
+        int taxFreeIncome = calculateTaxFreeIncome(employeeIncome.isMarried(), employeeIncome.getNumberOfChildren());
+        return (employeeIncome.getMonthlySalary() + employeeIncome.getOtherMonthlyIncome()) * employeeIncome.getNumberOfMonthsWorked() - employeeIncome.getDeductible() - taxFreeIncome;
+
 	 public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthsWorked, int deductible, boolean isMarried, int numberOfChildren) {
         int taxableIncome = calculateTaxableIncome(monthlySalary, otherMonthlyIncome, numberOfMonthsWorked, deductible, isMarried, numberOfChildren);
         int tax = calculateTaxFromTaxableIncome(taxableIncome);
