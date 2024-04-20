@@ -69,9 +69,11 @@ public class Employee {
     }
 
     public int getAnnualIncomeTax() {
-        int monthsWorkedInYear = calculateMonthsWorkedInYear();
-        return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthsWorkedInYear, annualDeductible, spouse.isAbsent(), children.size());
-    }
+		int monthsWorkedInYear = calculateMonthsWorkedInYear();
+		EmployeeIncome employeeIncome = new EmployeeIncome(monthlySalary, otherMonthlyIncome, monthsWorkedInYear, annualDeductible, spouse.isAbsent(), children.size());
+		return TaxFunction.calculateTax(employeeIncome);
+	}
+	
 
     private int calculateMonthsWorkedInYear() {
         LocalDate currentDate = LocalDate.now();
